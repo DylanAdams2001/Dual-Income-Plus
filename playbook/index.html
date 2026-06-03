@@ -617,17 +617,94 @@
       line-height: 1.5;
     }
 
+    /* ── DOWNLOAD BAR ───────────────────────────────── */
+    .dl-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--indigo);
+      padding: 12px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: 0 2px 12px rgba(28,34,69,0.25);
+    }
+    .dl-bar-text {
+      font-family: var(--font-h);
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.8);
+    }
+    .dl-bar-text strong {
+      color: var(--white);
+    }
+    .dl-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--lime);
+      color: var(--navy);
+      font-family: var(--font-h);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      border-radius: 3px;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+      flex-shrink: 0;
+    }
+    .dl-btn:hover { opacity: 0.88; }
+    .dl-btn svg { flex-shrink: 0; }
+
     /* ── PRINT ──────────────────────────────────────── */
     @media print {
       body { background: white; }
-      .screen-wrap { box-shadow: none; max-width: 100%; }
-      .page { page-break-inside: avoid; }
-      .cover { page-break-after: always; }
-      .cta-page { page-break-before: always; }
+      .dl-bar { display: none !important; }
+      .screen-wrap {
+        box-shadow: none;
+        max-width: 100%;
+      }
+      .cover {
+        page-break-after: always;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .cta-page {
+        page-break-before: always;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .page {
+        page-break-inside: avoid;
+        padding: 40px 60px;
+      }
+      .callout,
+      .highlight-box,
+      .numbers-strip,
+      .compare-grid,
+      .finance-grid,
+      .income-table,
+      .process-list {
+        page-break-inside: avoid;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .footer-strip {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      a { text-decoration: none; color: inherit; }
     }
 
     /* ── RESPONSIVE ─────────────────────────────────── */
     @media (max-width: 640px) {
+      .dl-bar { padding: 10px 20px; }
+      .dl-bar-text { display: none; }
       .cover, .page, .cta-page, .footer-strip { padding-left: 24px; padding-right: 24px; }
       .compare-grid, .finance-grid { grid-template-columns: 1fr; }
       .numbers-strip { grid-template-columns: 1fr; }
@@ -640,6 +717,19 @@
 </head>
 <body>
 <div class="screen-wrap">
+
+  <!-- ══ DOWNLOAD BAR ═══════════════════════════════════════════════ -->
+  <div class="dl-bar">
+    <div class="dl-bar-text"><strong>The Dual Key Investment Playbook</strong> — Dual Income Plus<sup style="font-size:9px">®</sup></div>
+    <button class="dl-btn" onclick="window.print()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      Save as PDF
+    </button>
+  </div>
 
   <!-- ══ COVER ══════════════════════════════════════════════════════ -->
   <div class="cover">
